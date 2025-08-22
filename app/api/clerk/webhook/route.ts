@@ -1,15 +1,15 @@
-import { db } from "@/server/db";
+import { prisma } from "@/server/db";
 
 
 export const POST =async(req:Request)=>{
     const {data}=await req.json();
     console.log("clerk webhook",data);
-    const email =data.email_Addresses[0].email_Address;
-    const name =data.first_Name;
+    const email =data.email_addresses[0].email_address;
+    const name =data.first_name;
     const image =data.image_url;
     const id = data.id;
 
-    await db.user.create({
+    await prisma.user.create({
         data:{
             email,
             name,
