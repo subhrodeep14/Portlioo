@@ -1,15 +1,12 @@
 import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
+import { authOptions } from "@/lib/authOptions";
 
-export async function requireUser() {
-  const session = await getServerSession();
-
-  if (!session?.user?.id) {
-    return {
-      userId: null,
-      errorResponse: NextResponse.json({ error: "Unauthorized" }, { status: 401 }),
-    };
+export async function requireAuth() {
+  const session = await getServerSession(authOptions);
+  if (!session?.user || !(session.user as any).id) {
+    const err: any = new Error("Unauthorized");
+    err.status = 401;
+    throw err;
   }
-
-  return { userId: session.user.id, errorResponse: null };
+  return session.user as { id: string; email?: string | null };
 }
