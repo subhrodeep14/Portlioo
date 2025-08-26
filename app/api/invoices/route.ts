@@ -1,52 +1,64 @@
+// app/api/invoices/route.ts
 import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { prisma } from '@/lib/prisma';
-import { requireUser } from '@/lib/auth';
+import { prisma } from "@/lib/prisma";
+import { z } from "zod";
+import { requireAuth } from "@/lib/auth";
 
-// GET – List all invoices for the logged-in user
-export async function GET() {
-  const session = await getServerSession();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+const InvoiceSchema = z.object({
+  workspaceId: z.string(),
+  clientId: z.string(),
+  projectId: z.string().optional(),
+  issueDate: z.string().optional(),
+  dueDate: z.string().optional(),
+  currency: z.string().min(3).max(3).default("USD"),
+  items: z.array(
+    z.object({
+      description: z.string(),
+      qty: z.number().min(1),
+      unitCents: z.number().min(0),
+    })
+  ),
+});
 
-  const invoices = await prisma.invoice.findMany({
-    where: { userId: session.user.id },
-    include: { client: true },
-    orderBy: { createdAt: "desc" },
-  });
-
-  return NextResponse.json(invoices);
-}
-
-// POST – Create a new invoice
 export async function POST(req: Request) {
-  const session = await getServerSession();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
   try {
-    const body = await req.json();
-    const { title, amount, dueDate, clientId } = body;
+    const user = await requireAuth();
+    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    if (!title || !amount || !dueDate || !clientId) {
-      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
-    }
+    const body = await req.json();
+    const data = InvoiceSchema.parse(body);
+
+    const subtotal = data.items.reduce((s, i) => s + i.qty * i.unitCents, 0);
+    const tax = Math.round(subtotal * 0.1); // Example: 10% tax
+    const total = subtotal + tax;
 
     const invoice = await prisma.invoice.create({
       data: {
-        title,
-        amount,
-        dueDate: new Date(dueDate),
-        clientId,
-        userId: session.user.id,
+        workspaceId: data.workspaceId,
+        clientId: data.clientId,
+        projectId: data.projectId,
+        issueDate: data.issueDate ? new Date(data.issueDate) : undefined,
+        dueDate: data.dueDate ? new Date(data.dueDate) : undefined,
+        currency: data.currency,
+        subtotalCents: subtotal,
+        taxCents: tax,
+        totalCents: total,
+        items: {
+          create: data.items.map((item) => ({
+            description: item.description,
+            qty: item.qty,
+            unitCents: item.unitCents,
+          })),
+        },
       },
+      include: { items: true },
     });
 
     return NextResponse.json(invoice, { status: 201 });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    const errorMessage = typeof error === "object" && error !== null && "message" in error
+      ? (error as { message: string }).message
+      : String(error);
+    return NextResponse.json({ error: errorMessage }, { status: 400 });
   }
 }
