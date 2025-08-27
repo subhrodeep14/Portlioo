@@ -6,7 +6,16 @@ const nextConfig: NextConfig = {
   },
   eslint:{
     ignoreDuringBuilds:true,
+  },
+
+  images: {
+    domains: [
+      'raw.githubusercontent.com',
+      'images.unsplash.com',
+
+    ]
   }
+
 
 };
 
