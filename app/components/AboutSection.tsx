@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AboutSection() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-10 bg-white">
       <h1 className="text-6xl font-semibold text-center text-black mx-auto">About our apps</h1>
       <p className="text-md text-slate-500 text-center mt-2 max-w-md mx-auto">
         A visual collection of our most recent works - each piece crafted with intention, emotion and style.
@@ -16,7 +16,7 @@ export default function AboutSection() {
           alt=""
         />
         <div>
-          <h1 className="text-3xl font-semibold">Our Latest features</h1>
+          <h1 className="text-3xl text-black font-semibold">Our Latest features</h1>
           <p className="text-sm text-slate-500 mt-2">
             Ship Beautiful Frontends Without the Overhead — Customizable, Scalable and Developer-Friendly UI Components.
           </p>
