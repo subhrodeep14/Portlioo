@@ -29,12 +29,7 @@ const HeroSection = () => {
           <li onClick={() => setMenuOpen(false)} className="hover:text-slate-500">
             <Link href="#">Home</Link>
           </li>
-          <li onClick={() => setMenuOpen(false)} className="hover:text-slate-500">
-            <Link href="#">Products</Link>
-          </li>
-          <li onClick={() => setMenuOpen(false)} className="hover:text-slate-500">
-            <Link href="#">Stories</Link>
-          </li>
+          
           <li onClick={() => setMenuOpen(false)} className="hover:text-slate-500">
             <Link href="#">Pricing</Link>
           </li>
