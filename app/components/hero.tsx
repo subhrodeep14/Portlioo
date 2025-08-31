@@ -33,9 +33,7 @@ const HeroSection = () => {
           <li onClick={() => setMenuOpen(false)} className="hover:text-slate-500">
             <Link href="#">Pricing</Link>
           </li>
-          <li onClick={() => setMenuOpen(false)} className="hover:text-slate-500">
-            <Link href="#">Docs</Link>
-          </li>
+          
 
           {/* Close Button Mobile */}
           <button
