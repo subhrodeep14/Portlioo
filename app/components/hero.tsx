@@ -26,13 +26,16 @@ const HeroSection = () => {
             menuOpen ? "max-md:left-0" : "max-md:-left-full"
           }`}
         >
-          <li onClick={() => setMenuOpen(false)} className="hover:text-slate-500">
-            <Link href="#">Home</Link>
+          <div className="flex flex-col md:flex-row items-center gap-8 border border-blue-800 text-md px-8 py-4 rounded-full max-md:mt-32 max-md:gap-6 max-md:bg-white/90">
+            <li onClick={() => setMenuOpen(false)} className="hover:text-blue-500">
+              <Link href="#">Home</Link>
+            </li>
+
+            <li onClick={() => setMenuOpen(false)} className="hover:text-blue-500">
+              <Link href="#">Pricing</Link>
           </li>
+          </div>
           
-          <li onClick={() => setMenuOpen(false)} className="hover:text-slate-500">
-            <Link href="#">Pricing</Link>
-          </li>
           
 
           {/* Close Button Mobile */}
@@ -60,36 +63,31 @@ const HeroSection = () => {
         </button>
 
         {/* CTA Button */}
-        <button className="max-md:hidden px-6 py-3 text-white bg-indigo-600 hover:bg-indigo-700 transition rounded-full">
+        <button className="max-md:hidden px-6 py-3 text-white text-md bg-blue-600 hover:bg-blue-700 transition rounded-full">
           Contact us
         </button>
       </nav>
 
       {/* Hero Section */}
-      <div className="flex flex-col-reverse gap-10 md:flex-row px-4 md:px-16 lg:px-24 xl:px-32 mt-12 md:mt-32">
+      <div className="flex flex-col-reverse gap-10 md:flex-row px-4 md:px-16 lg:px-24 xl:px-32 mt-12 md:mt-12">
         <div className="max-md:text-center">
           <h5 className="text-4xl md:text-6xl/[76px] font-semibold max-w-xl bg-gradient-to-r from-slate-900 to-[#6D8FE4] text-transparent bg-clip-text">
-            Build Skills That Get You Hired
+            Smart Client & Project Management for Freelancers and Creators
           </h5>
 
           <p className="text-sm md:text-base max-w-lg mt-6 max-md:px-2 text-slate-600">
-            Join a world-class, personalized learning journey built to turn you
-            into a high-performing tech professional — and get hired by top
-            product companies.
+            Simplify Freelance Work. Get Paid Faster. Manage Clients Effortlessly.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex items-center gap-4 mt-6">
-            <button className="px-8 py-3 rounded-md bg-indigo-600 hover:bg-indigo-700 text-white active:scale-95 transition-all">
-              Get Started
-            </button>
-            <button className="px-5 py-3 rounded-md bg-white text-indigo-600 border border-indigo-400 flex items-center gap-2 hover:bg-indigo-600/5 active:scale-95 transition-all">
-              ⭐ <span>Our courses</span>
+          <div className="flex items-center justify-center md:justify-normal gap-4 mt-6">
+            <button className="px-10 py-3 rounded-md bg-blue-600 text-md hover:bg-blue-700 text-white active:scale-95 transition-all">
+              Start free trial
             </button>
           </div>
 
           {/* Avatar Group */}
-          <div className="flex items-center mt-9">
+          {/* <div className="flex items-center mt-6">
             <div className="flex -space-x-3.5 pr-3">
               <Image
                 src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200"
@@ -105,12 +103,12 @@ const HeroSection = () => {
                 alt="user"
                 className="size-10 border-2 border-white rounded-full"
               />
-              {/* Add more users similarly */}
+              {/* Add more users similarly 
             </div>
             <div>
               <p className="text-sm text-slate-500">⭐ Used by 1,000+ people</p>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Right Side Image */}
