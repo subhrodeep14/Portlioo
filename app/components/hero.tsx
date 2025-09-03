@@ -83,7 +83,7 @@ const HeroSection = () => {
           <div className="flex items-center justify-center md:justify-normal gap-4 mt-6">
             <button className="px-10 py-3 rounded-md bg-blue-600 text-md hover:bg-blue-700 text-white active:scale-95 transition-all">
               Start free trial
-            </button>
+            </button> 
           </div>
 
           {/* Avatar Group */}
