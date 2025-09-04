@@ -15,7 +15,7 @@ const poppins = Poppins({
 export default function Footer() {
   return (
     <footer
-      className={`flex flex-col items-center justify-center w-full py-20 bg-gradient-to-b from-[#5524B7] to-[#380B60] text-white/70 ${poppins.className}`}
+      className={`flex flex-col items-center justify-center w-full py-20 bg-gradient-to-b from-[#5524B7] to-[#380B60] text-white/80 ${poppins.className}`}
     >
       <svg width="157" height="40" viewBox="0 0 157 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         {/* [SVG paths here, as in your code] */}
