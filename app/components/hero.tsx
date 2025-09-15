@@ -11,13 +11,14 @@ const HeroSection = () => {
       {/* Navbar */}
       <nav className="flex items-center justify-between p-4 md:px-16 lg:px-24 xl:px-32 border-b border-white/25 w-full">
         <Link href="https://prebuiltui.com">
-          <Image
+          {/* <Image
             src="https://prebuiltui.com/logo.svg"
             alt="PrebuiltUI"
             width={120}
             height={40}
             className="h-10 w-auto"
-          />
+          /> */}
+          <p className="text-5xl ">Portlio</p>
         </Link>
 
         {/* Menu Items */}
