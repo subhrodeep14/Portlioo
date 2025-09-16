@@ -4,7 +4,7 @@ import React from "react";
 const plans = [
   {
     name: "Basic",
-    price: 29,
+    price: 10,
     features: [
       "Access to all basic courses",
       "Community support",
@@ -24,7 +24,7 @@ const plans = [
   },
   {
     name: "Pro",
-    price: 79,
+    price: 59,
     features: [
       "Access to all Pro courses",
       "Priority community support",
@@ -46,7 +46,7 @@ const plans = [
   },
   {
     name: "Enterprise",
-    price: 199,
+    price: 99,
     features: [
       "Access to all courses",
       "Dedicated support",
