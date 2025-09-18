@@ -29,10 +29,7 @@ const plans = [
       "Access to all Pro courses",
       "Priority community support",
       "30 practice projects",
-      "Course completion certificate",
-      "Advance code review",
-      "1-on-1 mentoring sessions",
-      "Job assistance",
+      
     ],
     highlighted: true,
     color: "indigo-500",
